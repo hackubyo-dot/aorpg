@@ -1,55 +1,40 @@
+/**
+ * ============================================================
+ * KWANZARPG - INDEX NAVIGATION ROUTES
+ * ============================================================
+ */
 const express = require('express');
 const router = express.Router();
 const { isAuthenticated, isGuest } = require('../middlewares/authMiddleware');
 const userController = require('../controllers/userController');
 
-/**
- * ROTAS DE NAVEGAÇÃO PRINCIPAL (VIEWS)
- */
-
-// Splash Screen / Landing Page
+// Página Inicial (Splash Screen para Visitantes)
 router.get('/', isGuest, (req, res) => {
-    res.render('pages/splash', { pageTitle: 'Bem-vindo ao KwanzaRPG' });
+    res.render('pages/splash', { pageTitle: 'Bem-vindo à Arena KwanzaRPG' });
 });
 
-// Dashboard Principal (Página Inicial após login)
+// Dashboard Principal (Protegido)
 router.get('/home', isAuthenticated, userController.renderHome);
 
-// Página de Perfil do Utilizador
+// Perfil do Utilizador (Protegido)
 router.get('/profile', isAuthenticated, userController.renderProfile);
 
-// Página de Ranking Global
+// Ranking Global (Protegido)
 router.get('/ranking', isAuthenticated, userController.renderRanking);
 
-// Página de Carteira (Wallet)
-router.get('/wallet', isAuthenticated, (req, res) => {
-    res.render('pages/wallet', { 
+// Atividade Recente (Protegido)
+router.get('/activity', isAuthenticated, (req, res) => {
+    res.render('pages/home', { // Reaproveita home ou cria activity.ejs
         user: req.session.user,
-        pageTitle: 'Minha Carteira - KwanzaRPG'
+        pageTitle: 'Minhas Atividades' 
     });
 });
 
-// Página de Todos os Jogos
-router.get('/games', isAuthenticated, (req, res) => {
-    res.render('pages/games-list', { 
+// Suporte Técnico (Protegido ou Público conforme necessidade)
+router.get('/support', isAuthenticated, (req, res) => {
+    res.render('pages/support', { 
         user: req.session.user,
-        pageTitle: 'Arena de Jogos'
-    });
-});
-
-// Página de Configurações
-router.get('/settings', isAuthenticated, (req, res) => {
-    res.render('pages/settings', { 
-        user: req.session.user,
-        pageTitle: 'Configurações de Conta'
-    });
-});
-
-// Página de Torneios
-router.get('/tournaments', isAuthenticated, (req, res) => {
-    res.render('pages/ranking', { 
-        user: req.session.user,
-        pageTitle: 'Torneios KwanzaRPG'
+        pageTitle: 'Centro de Suporte' 
     });
 });
 
