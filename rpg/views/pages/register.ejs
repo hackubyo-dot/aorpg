@@ -1,0 +1,123 @@
+<!-- 
+ * ============================================================
+ * KWANZARPG - REGISTER PAGE
+ * ============================================================
+ * Fidelidade: Imagem 4 (SolanaShuffle Style)
+ * Idioma: Português (Angola)
+ * Lógica: Ajax-driven via AuthEngine.
+ * ============================================================
+-->
+<!DOCTYPE html>
+<html lang="pt-AO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Conta | KwanzaRPG Arena</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <link rel="stylesheet" href="/css/theme-core.css">
+    <link rel="stylesheet" href="/css/auth.css">
+</head>
+<body class="auth-page">
+
+    <div id="particles-js" class="auth-bg-effect"></div>
+
+    <div class="auth-container animate__animated animate__fadeIn">
+        
+        <div class="auth-header">
+            <div class="auth-avatar-wrapper">
+                <img src="/images/logo-icon.png" alt="Kwanza Icon">
+            </div>
+            <h1 class="auth-title gaming-font">JUNTA-TE À ELITE</h1>
+            <p class="auth-subtitle">Cria a tua conta e começa a ganhar prémios</p>
+        </div>
+
+        <div class="auth-tabs">
+            <div class="auth-tab" onclick="window.location.href='/login'">ENTRAR</div>
+            <div class="auth-tab active">REGISTAR</div>
+        </div>
+
+        <form id="register-form" class="auth-form" novalidate>
+            <div class="form-group">
+                <label class="label-gaming">Nome Completo</label>
+                <div class="position-relative">
+                    <i class="fas fa-id-card input-icon"></i>
+                    <input type="text" name="full_name" class="input-gaming" placeholder="Introduz o teu nome real" required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="label-gaming">E-mail</label>
+                        <div class="position-relative">
+                            <i class="fas fa-envelope input-icon"></i>
+                            <input type="email" name="email" class="input-gaming" placeholder="exemplo@kwanza.ao" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="label-gaming">Telemóvel</label>
+                        <div class="position-relative">
+                            <i class="fas fa-phone-alt input-icon"></i>
+                            <input type="tel" name="phone" class="input-gaming" placeholder="9XXXXXXXX" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="label-gaming">Nova Palavra-passe</label>
+                <div class="position-relative">
+                    <i class="fas fa-shield-alt input-icon"></i>
+                    <input type="password" name="password" class="input-gaming" placeholder="Mínimo 6 caracteres" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="label-gaming">Confirmar Palavra-passe</label>
+                <div class="position-relative">
+                    <i class="fas fa-lock input-icon"></i>
+                    <input type="password" name="confirm_password" class="input-gaming" placeholder="Repete a palavra-passe" required>
+                </div>
+            </div>
+
+            <div class="form-check mb-4 custom-checkbox">
+                <input class="form-check-input" type="checkbox" id="termsCheck" required>
+                <label class="form-check-label text-muted small ms-2" for="termsCheck">
+                    Aceito os <a href="/terms" class="text-white">Termos de Serviço</a> e a Política de Privacidade da Arena KwanzaRPG.
+                </label>
+            </div>
+
+            <button type="submit" class="btn-gaming btn-purple btn-auth-submit">
+                CRIAR MINHA CONTA AGORA
+            </button>
+        </form>
+
+        <div class="auth-footer">
+            Já tens conta? <a href="/login">Faz login aqui!</a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/auth.js"></script>
+
+    <script>
+        particlesJS('particles-js', {
+            "particles": {
+                "number": { "value": 50, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#f107a3" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.1 },
+                "move": { "enable": true, "speed": 0.5, "direction": "top" }
+            }
+        });
+    </script>
+</body>
+</html>

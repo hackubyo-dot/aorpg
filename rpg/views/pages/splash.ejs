@@ -1,0 +1,117 @@
+<!-- 
+ * ============================================================
+ * KWANZARPG - SPLASH SCREEN (ENTRY ENGINE)
+ * ============================================================
+ * Fidelidade: Imagem 4 (Atmosfera Neon/Space)
+ * Descrição: Tela de carregamento imersiva com progressão.
+ * ============================================================
+-->
+<!DOCTYPE html>
+<html lang="pt-AO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KwanzaRPG | A Carregar Arena...</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="/css/theme-core.css">
+    <link rel="stylesheet" href="/css/auth.css">
+    <style>
+        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #07080a; }
+        .splash-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, rgba(123, 47, 247, 0.15) 0%, #07080a 100%);
+            z-index: 1;
+        }
+        .splash-content {
+            position: relative; z-index: 2; height: 100%;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+        }
+        .brand-logo-large {
+            width: 150px; margin-bottom: 40px;
+            filter: drop-shadow(0 0 20px var(--p-primary));
+            animation: floatingLogo 3s ease-in-out infinite;
+        }
+        .loading-container { width: 300px; text-align: center; }
+        .loading-text {
+            font-family: 'Rajdhani', sans-serif; color: white;
+            text-transform: uppercase; letter-spacing: 5px; font-size: 0.8rem;
+            margin-bottom: 15px; font-weight: 700;
+        }
+        .progress-bar-wrap {
+            height: 4px; width: 100%; background: rgba(255,255,255,0.05);
+            border-radius: 10px; overflow: hidden; position: relative;
+        }
+        .progress-fill {
+            position: absolute; left: 0; top: 0; height: 100%; width: 0%;
+            background: var(--p-grad); box-shadow: 0 0 15px var(--p-primary);
+            transition: width 0.4s cubic-bezier(0.1, 0.7, 1.0, 0.1);
+        }
+        .status-msg {
+            margin-top: 15px; font-size: 0.7rem; color: var(--text-muted);
+            font-weight: 500; text-transform: uppercase; height: 20px;
+        }
+        @keyframes floatingLogo {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-15px) scale(1.05); }
+        }
+    </style>
+</head>
+<body>
+    <div class="splash-bg"></div>
+    
+    <div class="splash-content">
+        <!-- Logo Icon Estilo Imagem 4 -->
+        <img src="/images/logo-icon.png" alt="KwanzaRPG" class="brand-logo-large animate__animated animate__zoomIn">
+        
+        <div class="loading-container animate__animated animate__fadeInUp animate__delay-1s">
+            <div class="loading-text" id="percent-text">0%</div>
+            <div class="progress-bar-wrap">
+                <div class="progress-fill" id="progress-bar"></div>
+            </div>
+            <div class="status-msg" id="status-msg">A INICIALIZAR PROTOCOLOS...</div>
+        </div>
+    </div>
+
+    <script>
+        const messages = [
+            "A CONECTAR AO NEON DB...",
+            "A CARREGAR ASSETS DA ARENA...",
+            "A SINCRONIZAR CARTEIRAS...",
+            "A PREPARAR COMBATE RPG...",
+            "AUTENTICAÇÃO SEGURA ATIVA...",
+            "BEM-VINDO À KWANZARPG"
+        ];
+
+        let progress = 0;
+        const bar = document.getElementById('progress-bar');
+        const text = document.getElementById('percent-text');
+        const msg = document.getElementById('status-msg');
+
+        const simulateLoading = () => {
+            const interval = setInterval(() => {
+                const inc = Math.floor(Math.random() * 8) + 1;
+                progress += inc;
+                
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    msg.textContent = messages[messages.length - 1];
+                    setTimeout(() => {
+                        window.location.href = '/login';
+                    }, 800);
+                }
+
+                bar.style.width = progress + '%';
+                text.textContent = progress + '%';
+
+                // Mudar mensagem baseada no progresso
+                const msgIndex = Math.floor((progress / 100) * (messages.length - 1));
+                msg.textContent = messages[msgIndex];
+
+            }, 150);
+        };
+
+        window.onload = simulateLoading;
+    </script>
+</body>
+</html>

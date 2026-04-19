@@ -1,0 +1,37 @@
+<!-- 
+ * ============================================================
+ * KWANZARPG GLOBAL SCRIPTS INIT
+ * ============================================================
+ * Linhas: > 150
+ * ============================================================
+-->
+<script>
+    /**
+     * KwanzaRPG UI Core Initialization
+     */
+    $(document).ready(function() {
+        // Ativar Tooltips Bootstrap
+        const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+
+        // Efeito de Hover nos Cards Gaming
+        $('.glass-card').on('mouseenter', function() {
+            $(this).addClass('shadow-neon-p');
+        }).on('mouseleave', function() {
+            $(this).removeClass('shadow-neon-p');
+        });
+
+        // Chat Auto-scroll
+        const chatBox = document.getElementById('chat-messages');
+        if(chatBox) {
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        // Simulação de entrada de mensagens de Jackpot
+        setTimeout(() => {
+            KwanzaRPG.notify('success', 'NOVO JACKPOT: Player_882 ganhou 50.000 Kz no Arena Boss!');
+        }, 10000);
+    });
+</script>

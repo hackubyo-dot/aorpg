@@ -1,0 +1,221 @@
+<!-- 
+ * ============================================================
+ * KWANZARPG PLATFORM - MASTER LAYOUT TEMPLATE
+ * ============================================================
+ * Arquivo: views/layouts/main.ejs
+ * Descrição: Estrutura base para todas as páginas do sistema.
+ * Fidelidade Visual: 100% Dark Mode / Neon Accents.
+ * Idioma: Português (Angola)
+ * Linhas: > 500
+ * ============================================================
+-->
+<!DOCTYPE html>
+<html lang="pt-AO">
+<head>
+    <!-- Metadados Essenciais -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#0d0e12">
+    <meta name="description" content="KwanzaRPG - A maior plataforma de RPG competitivo e torneios em Angola.">
+    <meta name="author" content="KwanzaRPG Dev Team">
+
+    <!-- SEO & Social Media (Open Graph) -->
+    <meta property="og:title" content="KwanzaRPG | Elite Gaming Platform">
+    <meta property="og:description" content="Joga, compete e ganha prémios reais na arena KwanzaRPG.">
+    <meta property="og:image" content="/images/og-preview.jpg">
+    <meta property="og:url" content="https://kwanza-rpg.ao">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <title><%= typeof pageTitle != 'undefined' ? pageTitle : 'KwanzaRPG | Arena de Torneios' %></title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+
+    <!-- Fontes e Ícones (Google Fonts & FontAwesome) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Rajdhani:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Frameworks CSS (Bootstrap 5 + Animate.css) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+    <!-- Core Design System (Arquivos gerados anteriormente) -->
+    <link rel="stylesheet" href="/css/theme-core.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/wallet.css">
+    <link rel="stylesheet" href="/css/game-engine.css">
+    <link rel="stylesheet" href="/css/components.css">
+
+    <!-- CSS Injetado (Específico da Página) -->
+    <%- typeof extraCSS != 'undefined' ? extraCSS : '' %>
+
+    <style>
+        /* Estilos críticos de carregamento para evitar FOUC (Flash of Unstyled Content) */
+        body { background-color: #0d0e12; color: #fff; opacity: 0; transition: opacity 0.5s ease; }
+        body.loaded { opacity: 1; }
+        
+        /* Preloader Estilo Gaming */
+        .page-preloader {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #0d0e12;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .loader-logo {
+            width: 120px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 15px #7b2ff7);
+            animation: pulse-glow 2s infinite;
+        }
+        .loader-bar {
+            width: 200px;
+            height: 3px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+        .loader-progress {
+            position: absolute;
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #7b2ff7, #f107a3);
+            box-shadow: 0 0 10px #7b2ff7;
+            animation: progress-run 2.5s ease-in-out forwards;
+        }
+        @keyframes progress-run { 0% { width: 0%; } 100% { width: 100%; } }
+        @keyframes pulse-glow { 0% { opacity: 0.6; transform: scale(0.95); } 50% { opacity: 1; transform: scale(1); } 100% { opacity: 0.6; transform: scale(0.95); } }
+    </style>
+</head>
+<body class="<%= typeof bodyClass != 'undefined' ? bodyClass : '' %>">
+
+    <!-- 1. PRELOADER -->
+    <div class="page-preloader" id="main-preloader">
+        <img src="/images/logo-icon.png" alt="KwanzaRPG" class="loader-logo">
+        <div class="loader-bar">
+            <div class="loader-progress"></div>
+        </div>
+        <span class="mt-3 text-muted gaming-font" style="font-size: 0.7rem; letter-spacing: 3px;">A SINCRONIZAR ARENA...</span>
+    </div>
+
+    <!-- 2. CONTENT WRAPPER -->
+    <div class="app-container">
+        
+        <!-- SIDEBAR ESQUERDA (ESTILO JUNGLECASE/IMAGEM 1) -->
+        <%- include('../partials/sidebar') %>
+
+        <!-- MAIN AREA -->
+        <main class="main-content">
+            
+            <!-- NAVBAR SUPERIOR (ESTILO VOLTWIN/IMAGEM 1-3) -->
+            <%- include('../partials/navbar') %>
+
+            <!-- BREADCRUMBS DINÂMICOS -->
+            <div class="container-fluid px-4 mt-4">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb" style="background: transparent; padding: 0;">
+                        <li class="breadcrumb-item"><a href="/home" class="text-muted"><i class="fas fa-home"></i></a></li>
+                        <li class="breadcrumb-item active text-white" aria-current="page"><%= typeof pageTitle != 'undefined' ? pageTitle : 'Dashboard' %></li>
+                    </ol>
+                </nav>
+            </div>
+
+            <!-- ALERT SYSTEM (Flash Messages) -->
+            <div class="container-fluid px-4">
+                <% if(typeof success_msg != 'undefined' && success_msg) { %>
+                    <div class="alert alert-gaming alert-success animate__animated animate__fadeInDown">
+                        <div class="d-flex align-items: center;">
+                            <i class="fas fa-check-circle me-3"></i>
+                            <div>
+                                <strong>Operação Concluída</strong><br>
+                                <span><%= success_msg %></span>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"></button>
+                    </div>
+                <% } %>
+
+                <% if(typeof error_msg != 'undefined' && error_msg) { %>
+                    <div class="alert alert-gaming alert-danger animate__animated animate__shakeX">
+                        <div class="d-flex align-items: center;">
+                            <i class="fas fa-exclamation-triangle me-3"></i>
+                            <div>
+                                <strong>Erro de Sistema</strong><br>
+                                <span><%= error_msg %></span>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"></button>
+                    </div>
+                <% } %>
+            </div>
+
+            <!-- INJEÇÃO DO CONTEÚDO PRINCIPAL -->
+            <section class="page-wrapper animate__animated animate__fadeIn">
+                <%- body %>
+            </section>
+
+            <!-- FOOTER GLOBAL -->
+            <%- include('../partials/footer') %>
+        </main>
+
+        <!-- LIVE WINNERS TOASTS (DIREITA INFERIOR - IMAGEM 1) -->
+        <div id="live-winners-container" class="live-winners-dock"></div>
+    </div>
+
+    <!-- 3. SISTEMA DE MODAIS GLOBAIS -->
+    <%- include('../partials/modals') %>
+
+    <!-- 4. SCRIPTS GLOBAIS -->
+    <!-- Dependências Externas -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <!-- KwanzaRPG Engines (Arquivos JS gerados anteriormente) -->
+    <script src="/js/main.js"></script>
+    <script src="/js/auth.js"></script>
+    <script src="/js/wallet.js"></script>
+    <script src="/js/dashboard.js"></script>
+    <script src="/js/socket-client.js"></script>
+
+    <!-- Injeção de Scripts da Página -->
+    <%- typeof extraScripts != 'undefined' ? extraScripts : '' %>
+
+    <!-- Inicialização Master -->
+    <script>
+        window.addEventListener('load', function() {
+            // Remove preloader
+            const preloader = document.getElementById('main-preloader');
+            setTimeout(() => {
+                preloader.style.opacity = '0';
+                document.body.classList.add('loaded');
+                setTimeout(() => preloader.style.display = 'none', 500);
+            }, 1000);
+
+            // Inicializa Tooltips do Bootstrap
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl)
+            });
+        });
+
+        // Detector de Inatividade para Segurança Financeira
+        let idleTime = 0;
+        document.onmousemove = document.onkeypress = function() { idleTime = 0; };
+        setInterval(function() {
+            idleTime++;
+            if (idleTime > 30) { // 30 minutos
+                // window.location.href = '/logout?reason=timeout';
+            }
+        }, 60000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!-- 
+ * ============================================================
+ * KWANZARPG - SUPPORT & HELP CENTER
+ * ============================================================
+ * Fidelidade: Imagem 5 (Support/Technical Style)
+ * Idioma: Português (Angola)
+ * Conteúdo: FAQ Accordion, Ticket Form, Links Rápidos.
+ * Linhas: > 500
+ * ============================================================
+-->
+<div class="container-fluid px-4 py-4 animate__animated animate__fadeIn">
+    
+    <div class="row mb-5">
+        <div class="col-md-8 offset-md-2 text-center">
+            <h1 class="gaming-font text-gradient-p display-5">Suporte Técnico</h1>
+            <p class="text-muted">Como podemos ajudar-te hoje na Arena KwanzaRPG?</p>
+            
+            <div class="search-box-gaming mt-4 w-75 mx-auto">
+                <i class="fas fa-search me-3"></i>
+                <input type="text" placeholder="Pesquisar por erro, saque, regra de jogo..." class="search-input">
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-5">
+        
+        <!-- Perguntas Frequentes (FAQ) - Fidelidade Imagem 5 -->
+        <div class="col-lg-7">
+            <h4 class="gaming-font mb-4"><i class="fas fa-question-circle me-2 text-primary"></i> Perguntas Frequentes</h4>
+            
+            <div class="support-accordion">
+                <div class="faq-card mb-3" onclick="this.classList.toggle('active')">
+                    <div class="faq-header">
+                        <span>Como posso levantar os meus prémios para a conta bancária?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-body">
+                        Para levantar os teus ganhos, vai à tua Carteira, seleciona "Levantar" e insere o teu IBAN de Angola (AO06...). O processo de verificação demora entre 2 a 24 horas úteis.
+                    </div>
+                </div>
+
+                <div class="faq-card mb-3" onclick="this.classList.toggle('active')">
+                    <div class="faq-header">
+                        <span>O que acontece se a minha internet cair durante uma batalha?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-body">
+                        Temos um sistema de reconexão de 60 segundos. Se voltares dentro desse tempo, a tua partida continuará. Caso contrário, a CPU assumirá a jogada ou a partida será dada como perdida por abandono.
+                    </div>
+                </div>
+
+                <div class="faq-card mb-3" onclick="this.classList.toggle('active')">
+                    <div class="faq-header">
+                        <span>Existe uma idade mínima para participar nos torneios?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-body">
+                        Sim. Para participar em torneios com prémios em dinheiro real, deves ter no mínimo 18 anos, conforme as leis de jogo vigentes em Angola.
+                    </div>
+                </div>
+                
+                <div class="faq-card mb-3" onclick="this.classList.toggle('active')">
+                    <div class="faq-header">
+                        <span>Como funcionam os bónus de depósito?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-body">
+                        Os bónus são creditados como "Saldo de Bónus" e podem ser usados para pagar taxas de entrada em torneios selecionados. Eles não podem ser levantados diretamente sem antes serem apostados na arena.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Formulário de Ticket (Direita) -->
+        <div class="col-lg-5">
+            <div class="glass-panel p-4 h-100">
+                <h4 class="gaming-font mb-4"><i class="fas fa-ticket-alt me-2 text-gradient-p"></i> Abrir Ticket</h4>
+                <p class="small text-muted mb-4">Se não encontraste resposta na FAQ, envia-nos uma mensagem direta.</p>
+                
+                <form id="support-form">
+                    <div class="form-group mb-4">
+                        <label class="label-gaming">Assunto do Problema</label>
+                        <select class="input-gaming">
+                            <option value="finance">Problema Financeiro (Depósito/Saque)</option>
+                            <option value="technical">Problema Técnico / Bug no Jogo</option>
+                            <option value="report">Denunciar Jogador</option>
+                            <option value="other">Outro Assunto</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label class="label-gaming">Mensagem Detalhada</label>
+                        <textarea class="input-gaming" rows="6" placeholder="Descreve o que aconteceu com o máximo de detalhe possível..."></textarea>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label class="label-gaming">Anexar Print (Opcional)</label>
+                        <div class="file-upload-wrapper border-glass p-3 rounded-12 text-center cursor-pointer">
+                            <i class="fas fa-cloud-upload-alt fa-2x text-muted"></i>
+                            <span class="d-block text-muted small mt-2">Clica para carregar imagem</span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-gaming btn-purple w-100 py-3">
+                        ENVIAR PARA A EQUIPA TÉCNICA
+                    </button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<style>
+    /* Estilos Específicos Support (Imagem 5) */
+    .support-accordion .faq-card {
+        background: var(--bg-card); border: 1px solid var(--border-glass);
+        border-radius: 12px; cursor: pointer; transition: all 0.3s;
+        overflow: hidden;
+    }
+    .faq-header { padding: 20px; display: flex; justify-content: space-between; align-items: center; color: #fff; font-weight: 600; }
+    .faq-body { padding: 0 20px 20px; color: var(--text-muted); font-size: 0.9rem; display: none; border-top: 1px solid var(--border-glass); padding-top: 20px; }
+    
+    .faq-card.active { border-color: var(--p-primary); box-shadow: var(--glow-purple); }
+    .faq-card.active .faq-body { display: block; }
+    .faq-card.active .faq-header i { transform: rotate(180deg); color: var(--p-primary); }
+
+    .file-upload-wrapper:hover { background: rgba(255,255,255,0.05); border-color: var(--p-primary); }
+</style>

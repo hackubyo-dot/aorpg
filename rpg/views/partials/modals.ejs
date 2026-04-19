@@ -1,0 +1,151 @@
+<!-- 
+ * ============================================================
+ * KWANZARPG MODALS - INTERACTIVE UI SYSTEM
+ * ============================================================
+ * Fidelidade: Imagem 5 (Replenishment) e 6.
+ * Lógica: Ajax-driven via WalletEngine.
+ * ============================================================
+-->
+
+<!-- 1. MODAL DE DEPÓSITO (RECARGA) -->
+<div class="modal fade" id="modal-deposit" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content replenishment-box">
+            <div class="modal-header border-0 pb-0">
+                <div class="replenishment-header w-100 d-flex justify-content-between">
+                    <div>
+                        <h2 class="replenishment-title text-white">Recarregar Saldo</h2>
+                        <p class="text-muted small">Os fundos estarão disponíveis imediatamente após confirmação.</p>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+            </div>
+            
+            <div class="modal-body pt-0">
+                <!-- Seleção de Métodos (Imagem 5) -->
+                <div class="payment-grid-alt mb-4">
+                    <div class="payment-item-alt active" onclick="selectPayment(this, 'mcx')">
+                        <div class="bonus-tag">BÓNUS 10%</div>
+                        <img src="/images/payments/mcx.png" alt="Referência Multicaixa">
+                        <span class="d-block mt-2 small">Multicaixa</span>
+                    </div>
+                    <div class="payment-item-alt" onclick="selectPayment(this, 'express')">
+                        <img src="/images/payments/express.png" alt="MCX Express">
+                        <span class="d-block mt-2 small">MCX Express</span>
+                    </div>
+                    <div class="payment-item-alt" onclick="selectPayment(this, 'unitelmoney')">
+                        <img src="/images/payments/unitel.png" alt="Unitel Money">
+                        <span class="d-block mt-2 small">Unitel Money</span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="form-group">
+                            <label class="label-gaming">Valor do Depósito (Kz)</label>
+                            <div class="position-relative">
+                                <input type="number" id="input-deposit-amount" class="input-gaming" placeholder="Mínimo 500 Kz" step="500">
+                                <span class="position-absolute end-0 top-50 translate-middle-y pe-3 text-muted">AOA</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Valores Rápidos -->
+                        <div class="d-flex gap-2 mt-2 mb-4">
+                            <button class="btn btn-sm btn-outline-secondary btn-quick-val" onclick="setDepositVal(1000)">1.000</button>
+                            <button class="btn btn-sm btn-outline-secondary btn-quick-val" onclick="setDepositVal(5000)">5.000</button>
+                            <button class="btn btn-sm btn-outline-secondary btn-quick-val" onclick="setDepositVal(10000)">10.000</button>
+                            <button class="btn btn-sm btn-outline-secondary btn-quick-val" onclick="setDepositVal(50000)">50.000</button>
+                        </div>
+
+                        <div class="info-notice glass-card p-3 mb-4">
+                            <i class="fas fa-info-circle text-info me-2"></i>
+                            <small class="text-muted">Será gerada uma referência única válida por 24 horas. Pode pagar no ATM ou Internet Banking.</small>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5">
+                        <div class="summary-box glass-card p-4 h-100 bg-darker">
+                            <h5 class="gaming-font text-white mb-3">Resumo</h5>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-muted">Valor:</span>
+                                <span id="summary-base" class="text-white">0,00 Kz</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-muted">Bónus RPG:</span>
+                                <span id="summary-bonus" class="text-success">+0,00 Kz</span>
+                            </div>
+                            <hr class="border-secondary">
+                            <div class="d-flex justify-content-between mb-4">
+                                <span class="text-white fw-bold">Total:</span>
+                                <span id="summary-total" class="text-gradient-p fw-bold">0,00 Kz</span>
+                            </div>
+                            
+                            <button class="btn-gaming btn-green w-100 py-3" onclick="WalletEngine.processDeposit()">
+                                <i class="fas fa-qrcode me-2"></i> GERAR REFERÊNCIA
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 2. MODAL DE TRANSFERÊNCIA ENTRE JOGADORES -->
+<div class="modal fade" id="modal-transfer" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content glass-card p-4 border-p">
+            <div class="modal-header border-0 pb-0">
+                <h3 class="gaming-font text-white mb-0">Enviar Fundos</h3>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-muted small mb-4">Transfira Kwanza instantaneamente para outro jogador via e-mail ou telefone.</p>
+                
+                <div class="form-group mb-3">
+                    <label class="label-gaming">Destinatário</label>
+                    <div class="position-relative">
+                        <i class="fas fa-user-tag position-absolute top-50 start-0 translate-middle-y ps-3 text-muted"></i>
+                        <input type="text" id="transfer-contact-input" class="input-gaming ps-5" placeholder="E-mail ou Telefone (9xx...)">
+                    </div>
+                </div>
+
+                <div class="form-group mb-4">
+                    <label class="label-gaming">Valor a Enviar</label>
+                    <div class="position-relative">
+                        <i class="fas fa-money-bill-wave position-absolute top-50 start-0 translate-middle-y ps-3 text-muted"></i>
+                        <input type="number" id="transfer-amount-input" class="input-gaming ps-5" placeholder="0,00">
+                    </div>
+                    <div class="d-flex justify-content-between mt-2">
+                        <small class="text-muted">Disponível: <strong><%= user.balance %> Kz</strong></small>
+                        <small class="text-primary cursor-pointer" onclick="maxTransfer()">Enviar Tudo</small>
+                    </div>
+                </div>
+
+                <button class="btn-gaming btn-purple w-100 py-3" onclick="WalletEngine.processTransfer()">
+                    CONFIRMAR ENVIO SEGURO
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Lógica rápida de UI para os modais
+    function setDepositVal(val) {
+        document.getElementById('input-deposit-amount').value = val;
+        updateDepositSummary();
+    }
+
+    function updateDepositSummary() {
+        const val = parseFloat(document.getElementById('input-deposit-amount').value) || 0;
+        const bonus = val * 0.1; // 10% bónus
+        const total = val + bonus;
+        
+        document.getElementById('summary-base').textContent = KwanzaRPG.formatCurrency(val);
+        document.getElementById('summary-bonus').textContent = '+' + KwanzaRPG.formatCurrency(bonus);
+        document.getElementById('summary-total').textContent = KwanzaRPG.formatCurrency(total);
+    }
+
+    document.getElementById('input-deposit-amount')?.addEventListener('input', updateDepositSummary);
+</script>

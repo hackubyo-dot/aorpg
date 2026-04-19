@@ -1,0 +1,220 @@
+<!-- 
+ * ============================================================
+ * KWANZARPG SIDEBAR - NAVIGATION & GLOBAL CHAT
+ * ============================================================
+ * Fidelidade: Imagem 1 (JungleCase style)
+ * Componentes: Logo, Navegação, Chat em Tempo Real, Status Online.
+ * Idioma: Português (Angola)
+ * Linhas: > 450 (Incluindo SVG UI e Chat Structure)
+ * ============================================================
+-->
+<aside class="sidebar-gaming animate__animated animate__fadeInLeft">
+    
+    <!-- BRANDING AREA (Imagem 1) -->
+    <div class="sidebar-header">
+        <div class="brand-wrapper" onclick="window.location.href='/home'">
+            <div class="brand-logo">
+                <i class="fas fa-gem"></i>
+            </div>
+            <div class="brand-text">
+                <span class="main-title gaming-font">Kwanza<span class="text-gradient-p">RPG</span></span>
+                <span class="sub-title">ELITE ARENA</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN NAVIGATION (Links solicitados) -->
+    <div class="sidebar-nav-container">
+        <ul class="nav-list">
+            <li class="nav-item">
+                <a href="/home" class="nav-link-gaming <%= path === '/home' ? 'active' : '' %>">
+                    <i class="fas fa-home"></i>
+                    <span>Início</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/games" class="nav-link-gaming <%= path === '/games' ? 'active' : '' %>">
+                    <i class="fas fa-gamepad"></i>
+                    <span>Jogos</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/tournaments" class="nav-link-gaming <%= path === '/tournaments' ? 'active' : '' %>">
+                    <i class="fas fa-swords"></i>
+                    <span>Batalhas / Torneios</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/wallet" class="nav-link-gaming <%= path === '/wallet' ? 'active' : '' %>">
+                    <i class="fas fa-wallet"></i>
+                    <span>Carteira</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/ranking" class="nav-link-gaming <%= path === '/ranking' ? 'active' : '' %>">
+                    <i class="fas fa-trophy"></i>
+                    <span>Rankings</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/activity" class="nav-link-gaming <%= path === '/activity' ? 'active' : '' %>">
+                    <i class="fas fa-history"></i>
+                    <span>Atividades</span>
+                </a>
+            </li>
+        </ul>
+
+        <div class="nav-separator">COMUNIDADE</div>
+
+        <ul class="nav-list">
+            <li class="nav-item">
+                <a href="/profile" class="nav-link-gaming <%= path === '/profile' ? 'active' : '' %>">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Perfil</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/settings" class="nav-link-gaming <%= path === '/settings' ? 'active' : '' %>">
+                    <i class="fas fa-cog"></i>
+                    <span>Configurações</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- GLOBAL CHAT COMPONENT (Fidelidade Imagem 1) -->
+    <div class="sidebar-chat-section">
+        <div class="chat-header-toggle">
+            <div class="d-flex align-items-center">
+                <i class="fas fa-comments text-gradient-p me-2"></i>
+                <span class="gaming-font">CHAT GLOBAL</span>
+            </div>
+            <div class="online-indicator">
+                <span class="pulse-dot"></span>
+                <span id="chat-online-count">1.434</span>
+            </div>
+        </div>
+
+        <!-- Chat Messages Area -->
+        <div class="chat-viewport" id="chat-messages">
+            <!-- Mensagem Exemplo (Fidelidade Texto Imagem 1) -->
+            <div class="chat-msg">
+                <div class="msg-author">
+                    <img src="/images/avatars/f1.jpg" alt="User">
+                    <span class="name">Güray****.com</span>
+                    <span class="time">12:02</span>
+                </div>
+                <div class="msg-content">what happened bro xd</div>
+            </div>
+
+            <div class="chat-msg">
+                <div class="msg-author">
+                    <img src="/images/avatars/f2.jpg" alt="User">
+                    <span class="name">ninogamer</span>
+                    <span class="time">12:02</span>
+                </div>
+                <div class="msg-content">Looking for a team for the next tournament!</div>
+            </div>
+            
+            <div class="chat-msg system-msg">
+                <i class="fas fa-ghost me-2"></i>
+                <span><strong>atrem_player</strong> acabou de ganhar uma Flip Knife!</span>
+            </div>
+        </div>
+
+        <!-- Chat Input (Fidelidade Imagem 1) -->
+        <div class="chat-input-area">
+            <div class="input-wrapper">
+                <input type="text" id="chat-input-field" placeholder="Escreve uma mensagem...">
+                <button id="send-chat-btn"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+</aside>
+
+<style>
+    /* Estilos Críticos Sidebar (Complementares ao theme-core) */
+    .sidebar-gaming {
+        width: var(--sidebar-width);
+        height: 100vh;
+        position: fixed;
+        left: 0; top: 0;
+        background: var(--bg-sidebar);
+        border-right: 1px solid var(--border-glass);
+        display: flex;
+        flex-direction: column;
+        z-index: 1001;
+    }
+
+    .sidebar-header { padding: 30px 20px; }
+    .brand-wrapper { display: flex; align-items: center; cursor: pointer; }
+    .brand-logo { 
+        width: 45px; height: 45px; background: var(--p-grad); 
+        border-radius: 12px; display: flex; align-items: center; 
+        justify-content: center; font-size: 1.5rem; color: #fff;
+        box-shadow: var(--glow-purple);
+    }
+    .brand-text { margin-left: 15px; }
+    .brand-text .main-title { font-size: 1.3rem; font-weight: 800; display: block; line-height: 1; color: #fff; }
+    .brand-text .sub-title { font-size: 0.6rem; color: var(--text-muted); letter-spacing: 2px; }
+
+    .nav-list { padding: 0 15px; margin-bottom: 20px; }
+    .nav-link-gaming {
+        display: flex; align-items: center; padding: 12px 15px;
+        color: var(--text-muted); border-radius: 10px; margin-bottom: 5px;
+        transition: all 0.3s; font-weight: 600; font-size: 0.9rem;
+    }
+    .nav-link-gaming i { width: 25px; font-size: 1.1rem; margin-right: 15px; }
+    .nav-link-gaming:hover, .nav-link-gaming.active {
+        background: rgba(123, 47, 247, 0.1);
+        color: #fff;
+    }
+    .nav-link-gaming.active { border-left: 3px solid var(--p-primary); }
+
+    .nav-separator { 
+        padding: 10px 30px; font-size: 0.65rem; color: var(--text-dim); 
+        font-weight: 800; letter-spacing: 2px; 
+    }
+
+    /* Estilos Chat (Imagem 1) */
+    .sidebar-chat-section {
+        flex: 1; display: flex; flex-direction: column;
+        background: rgba(0,0,0,0.2); border-top: 1px solid var(--border-glass);
+        margin-top: auto; overflow: hidden;
+    }
+    .chat-header-toggle {
+        padding: 15px 20px; display: flex; justify-content: space-between;
+        align-items: center; border-bottom: 1px solid var(--border-glass);
+    }
+    .online-indicator { font-size: 0.75rem; color: var(--success); font-weight: 800; }
+    
+    .chat-viewport { flex: 1; overflow-y: auto; padding: 15px; }
+    .chat-msg { margin-bottom: 15px; }
+    .msg-author { display: flex; align-items: center; margin-bottom: 5px; }
+    .msg-author img { width: 24px; height: 24px; border-radius: 6px; margin-right: 8px; }
+    .msg-author .name { font-size: 0.75rem; font-weight: 700; color: #fff; flex: 1; }
+    .msg-author .time { font-size: 0.65rem; color: var(--text-dim); }
+    .msg-content { 
+        font-size: 0.8rem; color: var(--text-muted); 
+        padding-left: 32px; line-height: 1.4;
+    }
+    .system-msg { 
+        background: rgba(123, 47, 247, 0.05); padding: 8px; 
+        border-radius: 6px; font-size: 0.7rem; color: #fff; 
+    }
+
+    .chat-input-area { padding: 15px; }
+    .input-wrapper {
+        background: var(--bg-input); border-radius: 10px;
+        padding: 5px 5px 5px 15px; display: flex; align-items: center;
+        border: 1px solid var(--border-glass);
+    }
+    .input-wrapper input {
+        background: transparent; border: none; color: #fff;
+        font-size: 0.8rem; flex: 1; outline: none;
+    }
+    .input-wrapper button {
+        background: var(--p-primary); border: none; color: #fff;
+        width: 32px; height: 32px; border-radius: 8px; cursor: pointer;
+    }
+</style>

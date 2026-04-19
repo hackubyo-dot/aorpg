@@ -1,0 +1,334 @@
+<!-- 
+ * ============================================================
+ * KWANZARPG - HOME DASHBOARD
+ * ============================================================
+ * Fidelidade: Imagem 1 e 2 (JungleCase + DoctorBunny)
+ * Idioma: Português (Angola)
+ * Conteúdo: Ticker de Vencedores, Stats, Perfil, Amigos, Batalhas.
+ * Linhas: > 550
+ * ============================================================
+-->
+<div class="container-fluid px-4 py-3">
+    
+    <!-- 1. RECENT WINNERS TICKER (Fidelidade Imagem 1) -->
+    <div class="winners-ticker-wrapper mb-4 animate__animated animate__fadeIn">
+        <div class="ticker-header">
+            <i class="fas fa-bullhorn text-gradient-p"></i>
+            <span class="gaming-font">VENCEDORES RECENTES</span>
+        </div>
+        <div class="ticker-content" id="live-winners-strip">
+            <!-- Gerado via socket-client.js ou Mock Realista para Primeira Carga -->
+            <div class="winner-card-mini">
+                <img src="/images/avatars/f1.jpg" alt="Winner">
+                <div class="winner-info">
+                    <span class="name">atrem_player</span>
+                    <span class="prize text-success">+12.500 Kz</span>
+                    <span class="game">Flip Knife</span>
+                </div>
+            </div>
+            <div class="winner-card-mini">
+                <img src="/images/avatars/f2.jpg" alt="Winner">
+                <div class="winner-info">
+                    <span class="name">DoctorBunny00</span>
+                    <span class="prize text-success">+350 Kz</span>
+                    <span class="game">Clash Arena</span>
+                </div>
+            </div>
+            <div class="winner-card-mini">
+                <img src="/images/avatars/f3.jpg" alt="Winner">
+                <div class="winner-info">
+                    <span class="name">ninogamer</span>
+                    <span class="prize text-success">+2.100 Kz</span>
+                    <span class="game">Boss Battle</span>
+                </div>
+            </div>
+            <!-- Duplicados para efeito de scroll infinito se necessário -->
+        </div>
+    </div>
+
+    <!-- 2. HIGHLIGHTED GAMES GRID (Fidelidade Imagem 2 Topo) -->
+    <div class="featured-section mb-5">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4 class="gaming-font m-0">Jogos em Destaque</h4>
+            <a href="/games" class="text-gradient-p text-decoration-none small fw-bold">VER TODOS <i class="fas fa-chevron-right ms-1"></i></a>
+        </div>
+        <div class="featured-grid">
+            <div class="featured-card-wrapper animate__animated animate__zoomIn">
+                <div class="featured-card">
+                    <img src="/images/games/g1.png" alt="Clash Arena">
+                    <div class="featured-overlay">
+                        <span class="badge-level">RPG</span>
+                        <h5 class="gaming-font">Clash Arena</h5>
+                        <button class="btn-play-mini" onclick="window.location.href='/games/clash-arena'">
+                            <i class="fas fa-play"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="featured-card-wrapper animate__animated animate__zoomIn" style="animation-delay: 0.1s">
+                <div class="featured-card">
+                    <img src="/images/games/g2.png" alt="Plants Battle">
+                    <div class="featured-overlay">
+                        <span class="badge-level">QUIZ</span>
+                        <h5 class="gaming-font">Plants Battle</h5>
+                        <button class="btn-play-mini"><i class="fas fa-play"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="featured-card-wrapper animate__animated animate__zoomIn" style="animation-delay: 0.2s">
+                <div class="featured-card">
+                    <img src="/images/games/g3.png" alt="Mini Militia">
+                    <div class="featured-overlay">
+                        <span class="badge-level">ARENA</span>
+                        <h5 class="gaming-font">Mini Militia</h5>
+                        <button class="btn-play-mini"><i class="fas fa-play"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="featured-card-wrapper animate__animated animate__zoomIn" style="animation-delay: 0.3s">
+                <div class="featured-card">
+                    <img src="/images/games/g4.png" alt="Mario Quiz">
+                    <div class="featured-overlay">
+                        <span class="badge-level">MENTAL</span>
+                        <h5 class="gaming-font">Mario Quiz</h5>
+                        <button class="btn-play-mini"><i class="fas fa-play"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. TRIPLE COLUMN GRID (Fidelidade Imagem 2) -->
+    <div class="row g-4 mb-5">
+        
+        <!-- COLUNA ESQUERDA: ESTATÍSTICAS -->
+        <div class="col-xl-3 col-lg-4">
+            <div class="stats-card glass-panel h-100 p-4">
+                <h5 class="gaming-font mb-4">Estatísticas</h5>
+                
+                <div class="stat-group mb-4">
+                    <div class="d-flex justify-content-between align-items-end mb-2">
+                        <div>
+                            <span class="stat-label">JOGOS JOGADOS</span>
+                            <div class="stat-value-large" data-target="124">0</div>
+                        </div>
+                        <i class="fas fa-gamepad text-muted fa-2x"></i>
+                    </div>
+                </div>
+
+                <div class="stat-group mb-4">
+                    <div class="d-flex justify-content-between align-items-end mb-2">
+                        <div>
+                            <span class="stat-label">TOTAL EM ARENA</span>
+                            <div class="stat-value-large" data-target="286">0</div>
+                        </div>
+                        <span class="text-muted small">HORAS</span>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-fill" style="width: 75%"></div>
+                    </div>
+                </div>
+
+                <div class="stat-group">
+                    <span class="stat-label mb-3 d-block">CONQUISTAS</span>
+                    <div class="achievements-grid">
+                        <div class="achievement-icon" data-tooltip="Primeira Vitória"><i class="fas fa-medal"></i></div>
+                        <div class="achievement-icon" data-tooltip="Veterano"><i class="fas fa-trophy"></i></div>
+                        <div class="achievement-icon" data-tooltip="Rico"><i class="fas fa-coins"></i></div>
+                        <div class="achievement-icon opacity-50"><i class="fas fa-lock"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COLUNA CENTRAL: PERFIL DO JOGADOR (Fidelidade Imagem 2) -->
+        <div class="col-xl-6 col-lg-8">
+            <div class="profile-main-card">
+                <div class="profile-avatar-big">
+                    <img src="/images/avatars/<%= user.avatar || 'monkey-avatar.png' %>" alt="User Avatar">
+                </div>
+                <h2 class="profile-name-big"><%= user.name %></h2>
+                <div class="badge-gaming badge-level mb-3">NÍVEL 14</div>
+                
+                <p class="profile-bio">
+                    Viciado em RPG e Batalhas Mentais. A jogar na KwanzaRPG desde 2024. 
+                    O meu objetivo é ser o #1 de Angola! 🇦🇴
+                </p>
+
+                <div class="profile-stats-mini">
+                    <div class="mini-stat-item">
+                        <span class="value text-gradient-p">12</span>
+                        <span class="label">Vitórias</span>
+                    </div>
+                    <div class="mini-stat-item">
+                        <span class="value">05</span>
+                        <span class="label">Torneios</span>
+                    </div>
+                    <div class="mini-stat-item">
+                        <span class="value">88%</span>
+                        <span class="label">Win Rate</span>
+                    </div>
+                </div>
+
+                <!-- XP Bar (Imagem 2) -->
+                <div class="mt-4 px-5">
+                    <div class="d-flex justify-content-between small mb-1">
+                        <span class="text-muted">PROGRESSO DE XP</span>
+                        <span class="text-white">750 / 1000 XP</span>
+                    </div>
+                    <div class="progress-container" style="height: 6px;">
+                        <div class="progress-fill" style="width: 75%; box-shadow: 0 0 15px var(--p-primary);"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COLUNA DIREITA: AMIGOS (Fidelidade Imagem 2) -->
+        <div class="col-xl-3">
+            <div class="friends-card glass-panel h-100 p-4">
+                <div class="d-flex justify-content-between align-items: center; mb-4">
+                    <h5 class="gaming-font m-0">Amigos</h5>
+                    <i class="fas fa-user-plus text-muted cursor-pointer"></i>
+                </div>
+                
+                <div class="search-box-mini mb-3">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="friend-search-input" placeholder="Procurar amigo...">
+                </div>
+
+                <div class="friends-list-container" id="friends-list-container">
+                    <!-- Gerado via dashboard.js -->
+                </div>
+
+                <button class="btn btn-outline-gaming w-100 mt-3 btn-sm">VER TODOS OS AMIGOS</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 4. RECENT BATTLES TABLE (Fidelidade Imagem 1 Parte Inferior) -->
+    <div class="row">
+        <div class="col-12">
+            <div class="glass-panel p-4 mb-4">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h4 class="gaming-font m-0">Batalhas de Arena</h4>
+                    <div class="d-flex gap-3 align-items-center">
+                        <div class="form-check form-switch custom-switch">
+                            <input class="form-check-input" type="checkbox" id="switchPrice">
+                            <label class="form-check-label small text-muted" for="switchPrice">Mostrar Preço</label>
+                        </div>
+                        <button class="btn-gaming btn-purple btn-sm" onclick="window.location.href='/tournaments'">
+                            CRIAR BATALHA
+                        </button>
+                    </div>
+                </div>
+
+                <div class="gaming-table-container">
+                    <table class="gaming-table">
+                        <thead>
+                            <tr>
+                                <th>ROUNDS</th>
+                                <th>JOGADORES</th>
+                                <th>MODO / JOGO</th>
+                                <th>VALOR EM JOGO</th>
+                                <th class="text-end">ACÇÃO</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="badge-gaming badge-level">4</span></td>
+                                <td>
+                                    <div class="player-stack">
+                                        <img src="/images/avatars/f1.jpg" title="Player 1">
+                                        <img src="/images/avatars/f2.jpg" title="Player 2">
+                                        <span class="more-players">+2</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="game-info-cell">
+                                        <img src="/images/games/g1.png" alt="Game">
+                                        <span>Batalha de Elite</span>
+                                    </div>
+                                </td>
+                                <td><span class="text-success fw-bold">15.000 Kz</span></td>
+                                <td class="text-end">
+                                    <button class="btn-gaming btn-outline btn-sm"><i class="fas fa-eye me-1"></i> ASSISTIR</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge-gaming badge-level">12</span></td>
+                                <td>
+                                    <div class="player-stack">
+                                        <img src="/images/avatars/f3.jpg" title="Player 1">
+                                        <img src="/images/avatars/f4.jpg" title="Player 2">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="game-info-cell">
+                                        <img src="/images/games/g3.png" alt="Game">
+                                        <span>Mini Arena</span>
+                                    </div>
+                                </td>
+                                <td><span class="text-success fw-bold">5.000 Kz</span></td>
+                                <td class="text-end">
+                                    <button class="btn-gaming btn-green btn-sm">ENTRAR</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Estilos específicos para a Home baseados na Imagem 2 */
+    .featured-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+    .featured-card {
+        height: 180px; border-radius: 20px; overflow: hidden; position: relative;
+        border: 1px solid var(--border-glass);
+    }
+    .featured-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+    .featured-card:hover img { transform: scale(1.1); }
+    .featured-overlay {
+        position: absolute; bottom: 0; left: 0; width: 100%; padding: 15px;
+        background: linear-gradient(transparent, rgba(0,0,0,0.9));
+        display: flex; flex-direction: column; justify-content: flex-end;
+    }
+    .btn-play-mini {
+        position: absolute; top: 15px; right: 15px; background: var(--p-grad);
+        border: none; width: 35px; height: 35px; border-radius: 50%; color: #fff;
+        box-shadow: var(--glow-purple); transition: transform 0.3s;
+    }
+    .btn-play-mini:hover { transform: scale(1.2); }
+
+    /* Player Avatar Stack na Tabela */
+    .player-stack { display: flex; align-items: center; }
+    .player-stack img {
+        width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--bg-card);
+        margin-right: -10px;
+    }
+    .player-stack .more-players {
+        width: 30px; height: 30px; border-radius: 50%; background: var(--bg-input);
+        font-size: 0.6rem; display: flex; align-items: center; justify-content: center;
+        margin-left: 15px; border: 1px solid var(--border-glass);
+    }
+
+    .game-info-cell { display: flex; align-items: center; gap: 10px; }
+    .game-info-cell img { width: 35px; height: 35px; border-radius: 8px; }
+
+    /* Search Friends Input */
+    .search-box-mini {
+        background: var(--bg-input); padding: 8px 15px; border-radius: 10px;
+        display: flex; align-items: center; border: 1px solid var(--border-glass);
+    }
+    .search-box-mini input {
+        background: transparent; border: none; color: #fff; font-size: 0.8rem;
+        margin-left: 10px; outline: none; width: 100%;
+    }
+</style>

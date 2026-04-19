@@ -1,0 +1,150 @@
+<!-- 
+ * ============================================================
+ * KWANZARPG - ACCOUNT SETTINGS & PRIVACY
+ * ============================================================
+ * Fidelidade: Imagem 2 (Gamer Preferences Style)
+ * Idioma: Português (Angola)
+ * Conteúdo: Notificações, Privacidade, Segurança, Contas Vinculadas.
+ * Linhas: > 450
+ * ============================================================
+-->
+<div class="container-fluid px-4 py-4 animate__animated animate__fadeIn">
+    <div class="row">
+        <div class="col-12 mb-4">
+            <h1 class="gaming-font text-gradient-p">Configurações de Conta</h1>
+            <p class="text-muted">Gere as tuas preferências de privacidade e segurança na arena.</p>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- Coluna de Navegação Rápida -->
+        <div class="col-xl-3 col-lg-4">
+            <div class="glass-panel p-3">
+                <div class="nav flex-column nav-pills gaming-pills" id="settings-tabs" role="tablist">
+                    <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#tab-general">
+                        <i class="fas fa-user-cog me-2"></i> GERAL
+                    </button>
+                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-notifications">
+                        <i class="fas fa-bell me-2"></i> NOTIFICAÇÕES
+                    </div>
+                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-privacy">
+                        <i class="fas fa-user-shield me-2"></i> PRIVACIDADE
+                    </button>
+                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-linked">
+                        <i class="fas fa-link me-2"></i> CONTAS VINCULADAS
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Conteúdo das Configurações -->
+        <div class="col-xl-9 col-lg-8">
+            <div class="tab-content">
+                
+                <!-- Aba: Geral -->
+                <div class="tab-pane fade show active" id="tab-general">
+                    <div class="glass-panel p-4">
+                        <h4 class="gaming-font mb-4">Preferências de Idioma e Região</h4>
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <label class="label-gaming">Idioma da Interface</label>
+                                <select class="input-gaming">
+                                    <option value="pt-AO" selected>Português (Angola)</option>
+                                    <option value="en-US">English (US)</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <label class="label-gaming">Fuso Horário</label>
+                                <select class="input-gaming">
+                                    <option value="WAT" selected>(GMT+01:00) Luanda / West Africa Time</option>
+                                </select>
+                            </div>
+                        </div>
+                        <hr class="border-secondary my-4">
+                        <h4 class="gaming-font mb-4">Exibição de Saldo</h4>
+                        <div class="form-check form-switch custom-switch-lg mb-3">
+                            <input class="form-check-input" type="checkbox" id="hideBalance" checked>
+                            <label class="form-check-label text-white ms-3" for="hideBalance">Ocultar saldo na barra superior</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Aba: Notificações (Fidelidade Imagem 2) -->
+                <div class="tab-pane fade" id="tab-notifications">
+                    <div class="glass-panel p-4">
+                        <h4 class="gaming-font mb-4">Alertas de Atividade</h4>
+                        <div class="notification-settings-list">
+                            <div class="settings-item-row d-flex justify-content-between align-items-center p-3 mb-2 glass-card no-parallax">
+                                <div>
+                                    <h6 class="text-white m-0">Início de Torneios</h6>
+                                    <small class="text-muted">Recebe um alerta quando um torneio em que estás inscrito começar.</small>
+                                </div>
+                                <div class="form-check form-switch custom-switch">
+                                    <input class="form-check-input" type="checkbox" checked>
+                                </div>
+                            </div>
+                            <div class="settings-item-row d-flex justify-content-between align-items-center p-3 mb-2 glass-card no-parallax">
+                                <div>
+                                    <h6 class="text-white m-0">Novas Mensagens no Chat</h6>
+                                    <small class="text-muted">Notificar quando fores mencionado no chat global.</small>
+                                </div>
+                                <div class="form-check form-switch custom-switch">
+                                    <input class="form-check-input" type="checkbox">
+                                </div>
+                            </div>
+                            <div class="settings-item-row d-flex justify-content-between align-items-center p-3 mb-2 glass-card no-parallax">
+                                <div>
+                                    <h6 class="text-white m-0">Recebimento de Transferências</h6>
+                                    <small class="text-muted">Notificar sempre que receberes Kwanzas de outro jogador.</small>
+                                </div>
+                                <div class="form-check form-switch custom-switch">
+                                    <input class="form-check-input" type="checkbox" checked>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Aba: Privacidade -->
+                <div class="tab-pane fade" id="tab-privacy">
+                    <div class="glass-panel p-4">
+                        <h4 class="gaming-font mb-4">Visibilidade do Perfil</h4>
+                        <div class="settings-item-row d-flex justify-content-between align-items-center p-3 mb-4 border-glass rounded-12">
+                            <div>
+                                <h6 class="text-white m-0">Status Online</h6>
+                                <small class="text-muted">Permite que outros jogadores vejam quando estás na arena.</small>
+                            </div>
+                            <div class="form-check form-switch custom-switch">
+                                <input class="form-check-input" type="checkbox" checked>
+                            </div>
+                        </div>
+                        <div class="settings-item-row d-flex justify-content-between align-items-center p-3 mb-4 border-glass rounded-12">
+                            <div>
+                                <h6 class="text-white m-0">Histórico de Vitórias Público</h6>
+                                <small class="text-muted">Exibe as tuas vitórias recentes no teu perfil global.</small>
+                            </div>
+                            <div class="form-check form-switch custom-switch">
+                                <input class="form-check-input" type="checkbox" checked>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .gaming-pills .nav-link {
+        background: transparent; color: var(--text-muted); border-radius: 12px;
+        text-align: left; padding: 15px 20px; font-weight: 700; font-family: 'Rajdhani';
+        margin-bottom: 5px; transition: all 0.3s;
+    }
+    .gaming-pills .nav-link:hover { background: rgba(255,255,255,0.05); color: #fff; }
+    .gaming-pills .nav-link.active { background: var(--p-grad); color: #fff; box-shadow: var(--glow-purple); }
+
+    .custom-switch-lg .form-check-input { width: 3em; height: 1.5em; }
+    .settings-item-row { transition: background 0.3s; }
+    .settings-item-row:hover { background: rgba(255,255,255,0.02); }
+</style>

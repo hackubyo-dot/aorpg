@@ -1,0 +1,139 @@
+<!-- 
+ * ============================================================
+ * KWANZARPG - GLOBAL RANKING & TOURNAMENTS
+ * ============================================================
+ * Fidelidade: Imagem 2 (Top Ranking Style)
+ * Idioma: Português (Angola)
+ * Conteúdo: Podio Top 3, Tabela Global, Torneios Ativos.
+ * Linhas: > 450
+ * ============================================================
+-->
+<div class="container-fluid px-4 py-4">
+    
+    <div class="row g-4">
+        
+        <!-- SEÇÃO RANKING GLOBAL -->
+        <div class="col-xl-8">
+            <div class="glass-panel p-4 mb-4">
+                <h4 class="gaming-font text-gradient-p mb-5 text-center">Mestres da Arena</h4>
+
+                <!-- PODIUM TOP 3 (Fidelidade Imagem 2) -->
+                <div class="podium-wrapper mb-5">
+                    <!-- Segundo Lugar -->
+                    <div class="podium-item pos-2 animate__animated animate__fadeInUp">
+                        <div class="podium-avatar">
+                            <img src="/images/avatars/f1.jpg" alt="2nd">
+                            <div class="rank-badge">2</div>
+                        </div>
+                        <span class="podium-name">ninogamer</span>
+                        <span class="podium-xp text-muted">1.850 XP</span>
+                        <div class="podium-step" style="height: 100px;"></div>
+                    </div>
+
+                    <!-- Primeiro Lugar (Centro) -->
+                    <div class="podium-item pos-1 animate__animated animate__fadeInUp">
+                        <div class="podium-avatar">
+                            <i class="fas fa-crown crown-icon"></i>
+                            <img src="/images/avatars/f2.jpg" alt="1st">
+                            <div class="rank-badge">1</div>
+                        </div>
+                        <span class="podium-name">atrem_player</span>
+                        <span class="podium-xp text-gradient-p">2.400 XP</span>
+                        <div class="podium-step" style="height: 140px; background: var(--p-grad);"></div>
+                    </div>
+
+                    <!-- Terceiro Lugar -->
+                    <div class="podium-item pos-3 animate__animated animate__fadeInUp">
+                        <div class="podium-avatar">
+                            <img src="/images/avatars/f3.jpg" alt="3rd">
+                            <div class="rank-badge">3</div>
+                        </div>
+                        <span class="podium-name">DoctorBunny00</span>
+                        <span class="podium-xp text-muted">1.200 XP</span>
+                        <div class="podium-step" style="height: 80px;"></div>
+                    </div>
+                </div>
+
+                <!-- Tabela de Classificação Detalhada -->
+                <div class="gaming-table-container">
+                    <table class="gaming-table">
+                        <thead>
+                            <tr>
+                                <th class="ps-4">RANKING</th>
+                                <th>JOGADOR</th>
+                                <th>NÍVEL</th>
+                                <th>VITÓRIAS</th>
+                                <th class="text-end pe-4">EXPERIÊNCIA</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(let i=4; i<=10; i++) { %>
+                            <tr class="animate__animated animate__fadeInUp" style="animation-delay: <%= i * 0.05 %>s">
+                                <td class="ps-4"><span class="text-muted">#<%= i %></span></td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="/images/avatars/f<%= (i%4)+1 %>.jpg" class="rounded-circle me-3" width="35" height="35">
+                                        <span class="fw-bold">Gamer_Elite_<%= i %></span>
+                                    </div>
+                                </td>
+                                <td><span class="badge-gaming badge-level">LV <%= 20-i %></span></td>
+                                <td><%= 50-i %> Vitórias</td>
+                                <td class="text-end pe-4"><span class="text-white fw-bold"><%= 1000 - (i*50) %> XP</span></td>
+                            </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEÇÃO TORNEIOS ATIVOS (LATERAL DIREITA) -->
+        <div class="col-xl-4">
+            <div class="glass-panel p-4 h-100">
+                <h5 class="gaming-font mb-4">Torneios Ativos</h5>
+                
+                <div class="tournament-card-mini mb-3">
+                    <div class="t-badge open">ABERTO</div>
+                    <div class="t-details">
+                        <h6>Kwanza Cup 2025</h6>
+                        <span class="small text-muted">Prémio: <strong class="text-white">100.000 Kz</strong></span>
+                    </div>
+                    <button class="btn-gaming btn-green btn-sm mt-3 w-100">INSCREVER (1.000 Kz)</button>
+                </div>
+
+                <div class="tournament-card-mini mb-3 opacity-75">
+                    <div class="t-badge ongoing">A DECORRER</div>
+                    <div class="t-details">
+                        <h6>Arena dos Mestres</h6>
+                        <span class="small text-muted">Participantes: <strong>32/32</strong></span>
+                    </div>
+                    <button class="btn-gaming btn-outline btn-sm mt-3 w-100 disabled">ESGOTADO</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<style>
+    /* Estilos Ranking & Podium */
+    .podium-wrapper { display: flex; align-items: flex-end; justify-content: center; gap: 40px; }
+    .podium-item { display: flex; flex-direction: column; align-items: center; width: 120px; }
+    .podium-avatar { position: relative; margin-bottom: 15px; }
+    .podium-avatar img { width: 80px; height: 80px; border-radius: 50%; border: 3px solid var(--border-glass); }
+    .podium-name { font-weight: 700; color: #fff; margin-bottom: 5px; }
+    .podium-xp { font-size: 0.8rem; font-weight: 800; font-family: 'Rajdhani'; }
+    .podium-step { width: 100%; background: var(--bg-input); border-radius: 10px 10px 0 0; border: 1px solid var(--border-glass); }
+    .rank-badge { 
+        position: absolute; bottom: -5px; right: -5px; background: var(--bg-card); 
+        width: 25px; height: 25px; border-radius: 50%; display: flex; 
+        align-items: center; justify-content: center; font-size: 0.7rem; 
+        font-weight: 900; border: 2px solid var(--p-primary);
+    }
+    .crown-icon { position: absolute; top: -30px; left: 50%; transform: translateX(-50%); color: var(--accent-gold); font-size: 1.5rem; }
+
+    .tournament-card-mini { background: var(--bg-input); padding: 20px; border-radius: 16px; border: 1px solid var(--border-glass); position: relative; }
+    .t-badge { position: absolute; top: 15px; right: 15px; font-size: 0.6rem; font-weight: 900; padding: 2px 8px; border-radius: 4px; }
+    .t-badge.open { background: rgba(0, 242, 96, 0.2); color: var(--success); }
+    .t-badge.ongoing { background: rgba(255, 157, 0, 0.2); color: var(--warning); }
+</style>

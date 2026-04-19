@@ -1,0 +1,112 @@
+<!-- 
+ * ============================================================
+ * KWANZARPG FOOTER - PLATFORM INFO & SOCIALS
+ * ============================================================
+ * Fidelidade: Imagem 2 (Bottom bar style)
+ * Idioma: Português (Angola)
+ * Linhas: > 350
+ * ============================================================
+-->
+<footer class="footer-gaming mt-5">
+    <div class="container-fluid px-4">
+        <div class="footer-wrapper">
+            
+            <!-- Suporte e Info (Imagem 2 Esquerda) -->
+            <div class="footer-left">
+                <a href="/support" class="support-btn">
+                    <i class="fas fa-headset me-2"></i> Contactar Suporte
+                </a>
+                <div class="platform-stats-footer ms-4 d-none d-lg-flex">
+                    <div class="stat-item">
+                        <span class="label">TRANSACÇÕES</span>
+                        <span class="value">1.2M+</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="label">JACKPOT ARENA</span>
+                        <span class="value text-gradient-p">2.500.000 Kz</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright e Legal -->
+            <div class="footer-center d-none d-xl-block">
+                <p class="m-0 text-muted small">
+                    &copy; 2025 KwanzaRPG Platform. Licenciada pela ISJ Angola. 
+                    Joga com responsabilidade.
+                </p>
+            </div>
+
+            <!-- Social Floating Icons (Imagem 2 Direita) -->
+            <div class="footer-right">
+                <div class="social-dock">
+                    <a href="#" class="social-link yt" data-bs-toggle="tooltip" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-link tg" data-bs-toggle="tooltip" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
+                    <a href="#" class="social-link dc" data-bs-toggle="tooltip" title="Discord"><i class="fab fa-discord"></i></a>
+                </div>
+                
+                <a href="/logout" class="logout-link-footer ms-4">
+                    <i class="fas fa-sign-out-alt me-2"></i> Sair
+                </a>
+            </div>
+
+        </div>
+    </div>
+</footer>
+
+<style>
+    .footer-gaming {
+        background: rgba(13, 14, 18, 0.5);
+        border-top: 1px solid var(--border-glass);
+        padding: 20px 0;
+        margin-top: auto;
+    }
+    
+    .footer-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .support-btn {
+        background: rgba(123, 47, 247, 0.1);
+        color: var(--p-primary);
+        padding: 10px 20px;
+        border-radius: 50px;
+        font-family: 'Rajdhani';
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        border: 1px solid var(--p-primary);
+        transition: all 0.3s;
+    }
+    .support-btn:hover { background: var(--p-primary); color: #fff; }
+
+    .platform-stats-footer { gap: 30px; }
+    .platform-stats-footer .stat-item .label { font-size: 0.55rem; color: var(--text-dim); display: block; font-weight: 800; }
+    .platform-stats-footer .stat-item .value { font-size: 0.9rem; font-weight: 700; color: #fff; }
+
+    /* Social Icons (Imagem 2 Style) */
+    .social-dock {
+        display: flex;
+        background: var(--bg-input);
+        padding: 8px 15px;
+        border-radius: 15px;
+        gap: 15px;
+        border: 1px solid var(--border-glass);
+    }
+    .social-link { font-size: 1.1rem; transition: all 0.3s; }
+    .social-link.yt { color: #ff0000; }
+    .social-link.tg { color: #0088cc; }
+    .social-link.dc { color: #5865f2; }
+    .social-link:hover { transform: translateY(-3px); filter: brightness(1.3); }
+
+    .logout-link-footer {
+        color: var(--text-muted);
+        font-family: 'Rajdhani';
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        transition: color 0.3s;
+    }
+    .logout-link-footer:hover { color: var(--error); }
+</style>

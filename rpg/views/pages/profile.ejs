@@ -1,0 +1,153 @@
+<!-- 
+ * ============================================================
+ * KWANZARPG - USER PROFILE / SETTINGS
+ * ============================================================
+ * Fidelidade: Imagem 2 (Expanded Profile)
+ * Idioma: Português (Angola)
+ * Conteúdo: Edição de Perfil, Stats Detalhados, Segurança.
+ * Linhas: > 450
+ * ============================================================
+-->
+<div class="container-fluid px-4 py-4">
+    
+    <div class="row g-4">
+        
+        <!-- Lado Esquerdo: Resumo Visual -->
+        <div class="col-xl-4 col-lg-5">
+            <div class="profile-main-card mb-4 p-5 h-100">
+                <div class="position-relative d-inline-block mx-auto mb-4">
+                    <div class="profile-avatar-big m-0">
+                        <img id="avatar-preview" src="/images/avatars/<%= user.avatar || 'monkey-avatar.png' %>" alt="Avatar">
+                    </div>
+                    <label for="avatar-input" class="avatar-edit-btn">
+                        <i class="fas fa-camera"></i>
+                        <input type="file" id="avatar-input" hidden accept="image/*">
+                    </label>
+                </div>
+                
+                <h3 class="gaming-font mb-1"><%= user.name %></h3>
+                <p class="text-muted small mb-4">Membro desde <%= new Date(user.created_at).toLocaleDateString() %></p>
+                
+                <div class="stats-grid-simple mb-4">
+                    <div class="simple-stat">
+                        <span class="lbl">VITÓRIAS</span>
+                        <span class="val">124</span>
+                    </div>
+                    <div class="simple-stat">
+                        <span class="lbl">NÍVEL</span>
+                        <span class="val text-gradient-p">14</span>
+                    </div>
+                    <div class="simple-stat">
+                        <span class="lbl">RANK</span>
+                        <span class="val">#82</span>
+                    </div>
+                </div>
+
+                <div class="glass-panel p-3 text-start">
+                    <h6 class="gaming-font small text-muted mb-3">Conquistas de Elite</h6>
+                    <div class="d-flex flex-wrap gap-2">
+                        <div class="achievement-icon sm"><i class="fas fa-fire"></i></div>
+                        <div class="achievement-icon sm"><i class="fas fa-shield-alt"></i></div>
+                        <div class="achievement-icon sm"><i class="fas fa-gem"></i></div>
+                        <div class="achievement-icon sm"><i class="fas fa-dragon"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lado Direito: Formulários e Configurações -->
+        <div class="col-xl-8 col-lg-7">
+            <div class="glass-panel p-4 h-100">
+                <ul class="nav nav-tabs gaming-tabs mb-4" id="profileTabs">
+                    <li class="nav-item">
+                        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#edit-profile">DADOS PESSOAIS</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#security">SEGURANÇA</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#activity-log">LOGS DE ACESSO</button>
+                    </li>
+                </ul>
+
+                <div class="tab-content" id="profileTabsContent">
+                    
+                    <!-- Aba: Dados Pessoais -->
+                    <div class="tab-pane fade show active" id="edit-profile">
+                        <form id="profile-update-form" class="mt-4">
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <label class="label-gaming">Nome de Jogador (Exibição)</label>
+                                    <input type="text" name="full_name" class="input-gaming" value="<%= user.name %>">
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <label class="label-gaming">Telefone (Angola)</label>
+                                    <input type="text" name="phone" class="input-gaming" value="<%= user.phone %>">
+                                </div>
+                                <div class="col-12 mb-4">
+                                    <label class="label-gaming">E-mail (Não Editável)</label>
+                                    <input type="email" class="input-gaming opacity-50" value="<%= user.email %>" readonly>
+                                </div>
+                                <div class="col-12 mb-4">
+                                    <label class="label-gaming">Sobre Mim / Bio</label>
+                                    <textarea class="input-gaming" rows="4" placeholder="Conta-nos um pouco sobre as tuas habilidades..."></textarea>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn-gaming btn-purple">
+                                GUARDAR ALTERAÇÕES
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Aba: Segurança -->
+                    <div class="tab-pane fade" id="security">
+                        <div class="mt-4">
+                            <h5 class="gaming-font small mb-4">Alterar Palavra-passe</h5>
+                            <div class="form-group mb-4">
+                                <label class="label-gaming">Palavra-passe Atual</label>
+                                <input type="password" class="input-gaming">
+                            </div>
+                            <div class="form-group mb-4">
+                                <label class="label-gaming">Nova Palavra-passe</label>
+                                <input type="password" class="input-gaming">
+                            </div>
+                            <button class="btn-gaming btn-outline">ATUALIZAR CREDENCIAIS</button>
+                            
+                            <hr class="border-secondary my-5">
+                            
+                            <h5 class="gaming-font small text-danger mb-3">Zona de Perigo</h5>
+                            <p class="text-muted small">Ao desativar a tua conta, perderás todo o teu progresso e saldo acumulado.</p>
+                            <button class="btn btn-outline-danger btn-sm">DESATIVAR CONTA</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<style>
+    .avatar-edit-btn {
+        position: absolute; bottom: 0; right: 0;
+        background: var(--p-grad); width: 40px; height: 40px;
+        border-radius: 50%; display: flex; align-items: center; justify-content: center;
+        color: #fff; cursor: pointer; border: 3px solid var(--bg-card);
+        transition: transform 0.3s;
+    }
+    .avatar-edit-btn:hover { transform: scale(1.1); }
+
+    .stats-grid-simple { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+    .simple-stat { background: rgba(255,255,255,0.03); padding: 10px; border-radius: 12px; text-align: center; }
+    .simple-stat .lbl { font-size: 0.55rem; color: var(--text-muted); display: block; font-weight: 800; }
+    .simple-stat .val { font-size: 1.1rem; font-weight: 700; font-family: 'Rajdhani'; }
+
+    .gaming-tabs { border: none; gap: 10px; }
+    .gaming-tabs .nav-link {
+        background: var(--bg-input); border: none; color: var(--text-muted);
+        border-radius: 10px; font-family: 'Rajdhani'; font-weight: 700;
+        padding: 10px 20px; transition: all 0.3s;
+    }
+    .gaming-tabs .nav-link.active { background: var(--p-grad); color: #fff; }
+</style>

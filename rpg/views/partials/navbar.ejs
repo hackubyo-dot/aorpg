@@ -1,0 +1,137 @@
+<!-- 
+ * ============================================================
+ * KWANZARPG NAVBAR - TOP CONTROL CENTER
+ * ============================================================
+ * Fidelidade: Imagem 1, 3 e 6.
+ * Componentes: Saldo Dinâmico, Depósito Rápido, Perfil Dropdown.
+ * ============================================================
+-->
+<nav class="navbar-gaming">
+    <div class="container-fluid px-4 d-flex align-items-center justify-content-between">
+        
+        <!-- Lado Esquerdo: Search / Status -->
+        <div class="nav-left d-flex align-items-center">
+            <div class="search-box-gaming d-none d-lg-flex">
+                <i class="fas fa-search me-2"></i>
+                <input type="text" placeholder="Procurar jogos, torneios ou jogadores..." class="search-input">
+            </div>
+            
+            <div class="online-stats ms-4 d-none d-md-flex">
+                <span class="pulse-dot me-2"></span>
+                <span class="text-muted small"><strong id="online-users-count">1.434</strong> Online</span>
+            </div>
+        </div>
+
+        <!-- Lado Direito: Wallet & User (Fidelidade Imagem 1/3) -->
+        <div class="nav-right d-flex align-items-center">
+            
+            <!-- Carteira / Saldo -->
+            <div class="wallet-nav-card">
+                <div class="balance-display me-3">
+                    <span class="label">SALDO TOTAL</span>
+                    <span class="value wallet-balance-display" data-value="<%= user.balance %>">
+                        <%= (parseFloat(user.balance)).toLocaleString('pt-AO', { style: 'currency', currency: 'AOA' }) %>
+                    </span>
+                </div>
+                
+                <div class="action-buttons d-flex gap-2">
+                    <button class="btn-nav btn-deposit-nav btn-trigger-deposit" data-bs-toggle="tooltip" title="Recarregar via Multicaixa/Express">
+                        <i class="fas fa-plus-circle me-1"></i> DEPOSITAR
+                    </button>
+                    <button class="btn-nav btn-withdraw-nav" onclick="window.location.href='/wallet'">
+                        LEVANTAR
+                    </button>
+                </div>
+            </div>
+
+            <!-- Notificações (Bell) -->
+            <div class="nav-icon-btn ms-3 position-relative" id="notifications-trigger">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge">3</span>
+            </div>
+
+            <!-- User Profile Dropdown (Fidelidade Imagem 2) -->
+            <div class="dropdown ms-3">
+                <div class="profile-trigger d-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false" style="cursor: pointer;">
+                    <div class="user-meta text-end me-3 d-none d-sm-block">
+                        <span class="username d-block"><%= user.name %></span>
+                        <span class="user-level text-gradient-p small">NÍVEL 14</span>
+                    </div>
+                    <div class="avatar-nav">
+                        <img src="/images/avatars/<%= user.avatar || 'default.jpg' %>" alt="<%= user.name %>">
+                        <div class="lvl-badge">14</div>
+                    </div>
+                </div>
+                
+                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end dropdown-gaming animate__animated animate__fadeInUp">
+                    <li class="px-3 py-2 border-bottom border-secondary mb-2">
+                        <small class="text-muted d-block">ID DA CONTA</small>
+                        <code class="text-white">#KZ-<%= user.id.toString().padStart(6, '0') %></code>
+                    </li>
+                    <li><a class="dropdown-item" href="/profile"><i class="fas fa-user-circle me-2"></i> Meu Perfil</a></li>
+                    <li><a class="dropdown-item" href="/wallet"><i class="fas fa-wallet me-2"></i> Minha Carteira</a></li>
+                    <li><a class="dropdown-item" href="/settings"><i class="fas fa-cog me-2"></i> Configurações</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-danger" href="/logout"><i class="fas fa-power-off me-2"></i> Sair da Arena</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</nav>
+
+<style>
+    /* Estilos específicos da Navbar para garantir fidelidade */
+    .navbar-gaming {
+        height: var(--navbar-height);
+        background: rgba(13, 14, 18, 0.8);
+        backdrop-filter: blur(15px);
+        border-bottom: 1px solid var(--border-glass);
+        position: sticky;
+        top: 0;
+        z-index: 999;
+    }
+
+    .wallet-nav-card {
+        background: #1a1b23;
+        padding: 6px 6px 6px 15px;
+        border-radius: 12px;
+        border: 1px solid var(--border-glass);
+        display: flex;
+        align-items: center;
+    }
+
+    .balance-display .label { font-size: 0.6rem; color: #8a8d97; font-weight: 800; display: block; }
+    .balance-display .value { font-family: 'Rajdhani'; font-weight: 700; color: #fff; font-size: 1.1rem; }
+
+    .btn-nav {
+        border: none;
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-family: 'Rajdhani';
+        font-weight: 700;
+        font-size: 0.85rem;
+        transition: all 0.3s;
+    }
+
+    .btn-deposit-nav { background: var(--g-grad); color: #fff; box-shadow: 0 0 10px rgba(0, 242, 96, 0.2); }
+    .btn-withdraw-nav { background: #2a2b35; color: #fff; }
+    .btn-nav:hover { transform: translateY(-2px); filter: brightness(1.2); }
+
+    .avatar-nav { position: relative; width: 45px; height: 45px; }
+    .avatar-nav img { width: 100%; height: 100%; border-radius: 10px; border: 2px solid var(--p-primary); }
+    .lvl-badge {
+        position: absolute; bottom: -5px; right: -5px;
+        background: var(--p-primary); font-size: 0.6rem;
+        font-weight: 900; color: #fff; padding: 2px 4px;
+        border-radius: 4px; border: 2px solid #1a1b23;
+    }
+
+    .notification-badge {
+        position: absolute; top: 0; right: 0;
+        width: 16px; height: 16px; background: #f107a3;
+        border-radius: 50%; font-size: 0.65rem;
+        display: flex; align-items: center; justify-content: center;
+        border: 2px solid #0d0e12;
+    }
+</style>

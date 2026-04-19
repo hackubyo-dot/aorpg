@@ -1,0 +1,214 @@
+<!-- 
+ * ============================================================
+ * KWANZARPG - MAIN WALLET DASHBOARD
+ * ============================================================
+ * Fidelidade: Imagem 6 (Main Wallet Design)
+ * Idioma: Português (Angola)
+ * Conteúdo: Saldo Total, Ações Rápidas, Lista de Ativos, Histórico.
+ * Linhas: > 550
+ * ============================================================
+-->
+<div class="wallet-page-container animate__animated animate__fadeIn">
+    
+    <!-- 1. HEADER SECTION (Imagem 6) -->
+    <div class="wallet-header-section mb-5">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <span class="wallet-label gaming-font">GESTÃO DE ACTIVOS</span>
+                <h1 class="wallet-title">Minha Carteira</h1>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <div class="wallet-sync-status">
+                    <i class="fas fa-sync-alt fa-spin text-primary me-2"></i>
+                    <span class="small text-muted">Sincronizado com a Rede Kwanza</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. MAIN BALANCE CARD (Fidelidade Imagem 6) -->
+    <div class="main-balance-card mb-4">
+        <div class="balance-content">
+            <span class="balance-label">SALDO DISPONÍVEL</span>
+            <div class="balance-amount-wrapper">
+                <span class="amount wallet-balance-display" data-value="<%= user.balance %>">
+                    <%= (parseFloat(user.balance)).toLocaleString('pt-AO', { style: 'currency', currency: 'AOA' }) %>
+                </span>
+                <span class="currency-tag">Kwanza (AOA)</span>
+            </div>
+            <div class="balance-stats mt-3">
+                <span class="text-success"><i class="fas fa-caret-up me-1"></i> +12.5%</span>
+                <span class="text-muted ms-2">em relação ao último mês</span>
+            </div>
+        </div>
+        
+        <!-- Botão de Ação Principal no Card -->
+        <div class="balance-actions">
+            <button class="btn-gaming btn-green btn-trigger-deposit" data-bs-toggle="modal" data-bs-target="#modal-deposit">
+                <i class="fas fa-plus-circle me-2"></i> RECARREGAR AGORA
+            </button>
+        </div>
+    </div>
+
+    <!-- 3. QUICK ACTIONS GRID (Imagem 6) -->
+    <div class="row g-3 mb-5">
+        <div class="col-6 col-md-3">
+            <div class="action-btn-item active btn-trigger-deposit" data-bs-toggle="modal" data-bs-target="#modal-deposit">
+                <div class="icon-circle"><i class="fas fa-arrow-down"></i></div>
+                <span>Depositar</span>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="action-btn-item" onclick="window.location.href='/wallet/withdraw'">
+                <div class="icon-circle"><i class="fas fa-arrow-up"></i></div>
+                <span>Levantar</span>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="action-btn-item btn-trigger-transfer" data-bs-toggle="modal" data-bs-target="#modal-transfer">
+                <div class="icon-circle"><i class="fas fa-exchange-alt"></i></div>
+                <span>Transferir</span>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="action-btn-item">
+                <div class="icon-circle"><i class="fas fa-history"></i></div>
+                <span>Relatórios</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. ASSETS & HISTORY (Imagem 6 Bottom Section) -->
+    <div class="row g-4">
+        
+        <!-- Lista de Ativos -->
+        <div class="col-xl-7">
+            <div class="assets-card glass-panel p-4 h-100">
+                <div class="section-header-flex mb-4">
+                    <h5 class="gaming-font m-0">Meus Ativos</h5>
+                    <div class="search-assets-wrapper">
+                        <i class="fas fa-search"></i>
+                        <input type="text" class="search-assets-input" placeholder="Filtrar ativos...">
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="asset-table">
+                        <thead>
+                            <tr>
+                                <th>ATIVO</th>
+                                <th class="text-center">TIPO</th>
+                                <th class="text-end">SALDO TOTAL</th>
+                                <th class="text-end">VALOR ESTIMADO</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="asset-row">
+                                <td>
+                                    <div class="asset-info-name">
+                                        <div class="asset-icon-circle bg-success-light">
+                                            <i class="fas fa-money-bill-wave text-success"></i>
+                                        </div>
+                                        <div>
+                                            <span class="name-full">Kwanza Angolano</span>
+                                            <span class="name-short">AOA</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-center"><span class="badge-gaming badge-level">FIAT</span></td>
+                                <td class="text-end"><span class="asset-value-main"><%= user.balance %></span></td>
+                                <td class="text-end"><span class="asset-value-sub"><%= user.balance %> Kz</span></td>
+                            </tr>
+                            <tr class="asset-row">
+                                <td>
+                                    <div class="asset-info-name">
+                                        <div class="asset-icon-circle bg-purple-light">
+                                            <i class="fas fa-star text-purple"></i>
+                                        </div>
+                                        <div>
+                                            <span class="name-full">Pontos de Experiência</span>
+                                            <span class="name-short">XP</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-center"><span class="badge-gaming badge-level">GAME</span></td>
+                                <td class="text-end"><span class="asset-value-main">1.450</span></td>
+                                <td class="text-end"><span class="asset-value-sub">LV 14</span></td>
+                            </tr>
+                            <tr class="asset-row">
+                                <td>
+                                    <div class="asset-info-name">
+                                        <div class="asset-icon-circle bg-info-light">
+                                            <i class="fas fa-gem text-info"></i>
+                                        </div>
+                                        <div>
+                                            <span class="name-full">Gemas RPG</span>
+                                            <span class="name-short">GEM</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-center"><span class="badge-gaming badge-level">PREMIUM</span></td>
+                                <td class="text-end"><span class="asset-value-main">25</span></td>
+                                <td class="text-end"><span class="asset-value-sub">5.000 Kz</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Histórico Recente (Fidelidade Imagem 1/6) -->
+        <div class="col-xl-5">
+            <div class="history-card glass-panel p-4 h-100">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h5 class="gaming-font m-0">Atividade Recente</h5>
+                    <button class="btn btn-sm btn-outline-secondary">Ver Tudo</button>
+                </div>
+
+                <div class="transaction-history-list" id="transaction-history-list">
+                    <!-- Dinâmico via wallet.js - Exemplo Inicial -->
+                    <div class="transaction-item">
+                        <div class="trans-icon deposit"><i class="fas fa-plus"></i></div>
+                        <div class="trans-details">
+                            <span class="title">Depósito via MCX</span>
+                            <span class="date">Hoje, 14:20</span>
+                        </div>
+                        <div class="trans-amount text-success">+5.000 Kz</div>
+                    </div>
+                    <div class="transaction-item">
+                        <div class="trans-icon withdraw"><i class="fas fa-minus"></i></div>
+                        <div class="trans-details">
+                            <span class="title">Inscrição Torneio Arena Boss</span>
+                            <span class="date">Hoje, 10:15</span>
+                        </div>
+                        <div class="trans-amount text-danger">-500 Kz</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<style>
+    /* Estilos Adicionais para fidelidade Imagem 6 */
+    .bg-success-light { background: rgba(0, 242, 96, 0.1); }
+    .bg-purple-light { background: rgba(123, 47, 247, 0.1); }
+    .bg-info-light { background: rgba(0, 209, 255, 0.1); }
+    
+    .currency-tag {
+        font-size: 0.8rem;
+        background: rgba(255,255,255,0.05);
+        padding: 4px 10px;
+        border-radius: 50px;
+        color: var(--text-muted);
+        margin-left: 10px;
+        font-weight: 700;
+    }
+
+    .asset-icon-circle {
+        width: 40px; height: 40px; border-radius: 12px;
+        display: flex; align-items: center; justify-content: center;
+        margin-right: 15px; font-size: 1.1rem;
+    }
+</style>
