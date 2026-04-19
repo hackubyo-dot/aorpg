@@ -1,3 +1,8 @@
+/**
+ * ============================================================
+ * KWANZARPG - EXPRESS APPLICATION CONFIG
+ * ============================================================
+ */
 const express = require('express');
 const path = require('path');
 const helmet = require('helmet');
@@ -8,43 +13,42 @@ const errorMiddleware = require('./middlewares/errorMiddleware');
 
 const app = express();
 
-// 1. Segurança HTTP (Helmet)
+// 1. SEGURANÇA (Configurado para permitir assets externos e inline scripts de jogos)
 app.use(helmet({
-    contentSecurityPolicy: false, // Permitir scripts inline para lógica de jogos
+    contentSecurityPolicy: false,
     crossOriginEmbedderPolicy: false
 }));
 
-// 2. Parsing de dados (JSON e Formulários)
+// 2. PARSING (JSON e Formulários)
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// 3. Arquivos Estáticos (CSS, JS, Imagens)
+// 3. STATIC FILES
 app.use(express.static(path.join(__dirname, 'public')));
 
-// 4. Configuração do View Engine (EJS)
+// 4. VIEW ENGINE (EJS)
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// 5. Gestão de Sessão (Persistência no DB Neon)
+// 5. SESSION MANAGEMENT (Persistente no Neon)
 app.use(session({
     store: new pgSession({
         pool: pool,
-        tableName: 'session',
-        createTableIfMissing: true
+        tableName: 'session'
     }),
     name: 'kwanza_rpg_sid',
-    secret: process.env.SESSION_SECRET || 'a0rpg_ultra_secure_secret_2025',
+    secret: process.env.SESSION_SECRET || 'kwanza_rpg_ultra_secret_2025',
     resave: false,
     saveUninitialized: false,
     cookie: {
-        maxAge: 7 * 24 * 60 * 60 * 1000, // 7 dias
+        maxAge: 7 * 24 * 60 * 60 * 1000, // 1 Semana
         secure: process.env.NODE_ENV === 'production',
         httpOnly: true,
         sameSite: 'lax'
     }
 }));
 
-// 6. Variáveis Globais para EJS (Acessíveis em todos os .ejs)
+// 6. GLOBAL VIEW VARIABLES
 app.use((req, res, next) => {
     res.locals.user = req.session.user || null;
     res.locals.path = req.path;
@@ -53,11 +57,11 @@ app.use((req, res, next) => {
     next();
 });
 
-// 7. Carregamento de Rotas Centralizadas
-const mainRouter = require('./routes/routes'); 
+// 7. ROUTING (Ajustado para o novo routes/routes.js)
+const mainRouter = require('./routes/routes');
 app.use('/', mainRouter);
 
-// 8. Tratamento de Erros (404 e 500)
+// 8. ERROR HANDLING
 app.use(errorMiddleware.notFound);
 app.use(errorMiddleware.handler);
 
